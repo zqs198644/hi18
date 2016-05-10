@@ -1,0 +1,187 @@
+.header {                                                                       
+        margin-bottom: 20px;                                                    
+    margin-top: 50px;                                                           
+}                                                                               
+                                                                                
+.topnavbar {                                                                    
+    /*background: #273f56;#4C7899;                                              
+    height: 42px;*/                                                             
+    overflow: hidden;                                                           
+}                                                                               
+.topsection {                                                                   
+    width: 100%;                                                                
+    min-width: 980px;                                                           
+}                                                                               
+.sidebox:after, .topsection:after {                                             
+    content: ".";                                                               
+    display: block;                                                             
+    font-size: 0px;                                                             
+    line-height: 0px;                                                           
+    height: 0;                                                                  
+    clear: both;                                                                
+    visibility: hidden;                
+}                                                                               
+                                                                                
+                                                                                
+body {                                                                          
+    margin: 0;                                                                  
+    font-family: "Arial",Helvetica,Arial,sans-serif;                            
+    font-size: 14px;                                                            
+    line-height: 20px;                                                          
+    color: #333;                                                                
+    background-color: #fff;                                                     
+}                                                                               
+.content {                                                                      
+    background: #fff;                                                           
+    padding: 20px;                                                              
+    width: 960px;                                                               
+    margin: 0 auto;                                                             
+   /* box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.1
+);*/                                                                            
+    margin-bottom: 20px;                                                        
+}                                                                               
+.website-map .sub-title {                                                       
+    position: relative;                                                         
+    height: 1px;           
+    border-bottom: 1px solid #e6e6e6;                                           
+    margin: 20px 0;                                                             
+}                                                                               
+                                                                                
+.website-map .sub-title h3 {                                                    
+    position: absolute;                                                         
+    left: 0;                                                                    
+    top: -22px;                                                                 
+    padding: 0 5px 0 20px;                                                      
+    height: 24px;                                                               
+    line-height: 24px;                                                          
+    font-weight: 700;                                                           
+    font-size: 1.2em;                                                           
+    color: #585858;                                                             
+    background: #fff url(/templets/yixieshi/styles/img/bg.png) -130px 5px no-rep
+eat;                                                                            
+}                                                                               
+                                                                                
+[class*="span"] {                                                               
+    float: left;                                                                
+    min-height: 1px;                                                            
+    margin-left: 20px;                                                          
+}                                  
+
+.clearfix:after {                                                               
+    clear: both;                                                                
+}                                                                               
+                                                                                
+.website-map .span2 {                                                           
+    margin: 5px 10px;                                                           
+    height: 70px;                                                               
+    padding: 5px 15px;                                                          
+}                                                                               
+.span2 {                                                                        
+    width: 140px;                                                               
+}                                                                               
+.website-map .span2 a {                                                         
+    font-size: 12px;                                                            
+    line-height: 20px;                                                          
+    height: 70px;                                                               
+    color: #999;                                                                
+    display: block;                                                             
+    text-decoration: none;                                                      
+}                                                                               
+                                                                                
+.website-map .span2 span {                                                      
+    display: block;                  
+    height: 25px;                                                               
+    overflow: hidden;                                                           
+    font-size: 14px;                                                            
+    color: #08c;                                                                
+}                                                                               
+.website-map .hot-item {                                                        
+        color: #ff8901!important;                                               
+        #background: url(/templets/yixieshi/styles/img/bg.png) -88px -269px no-r
+epeat;                                                                          
+        #padding-left: 18px;                                                    
+}                                                                               
+                                                                                
+.clearfix:before, .clearfix:after {                                             
+    display: table;                                                             
+    line-height: 0;                                                             
+    content: "";                                                                
+}                                                                               
+                                                                                
+.tubiao{                                                                        
+    vertical-align: top;                                                        
+    padding: 2px 4px;                                                           
+    float: left;                
+    height:16px;                                                                
+    width:16px;                                                                 
+                                                                                
+}                                                                               
+                                                                                
+/*******************google***************************/                          
+                                                                                
+#s_fm {                                                                         
+        padding-left: 50px;                                                     
+    padding-top: 15px;                                                          
+        z-index: 300;                                                           
+        height: 43px;                                                           
+        position: relative;                                                     
+}                                                                               
+                                                                                
+#kw1 {                                                                          
+        font: 16px arial;                                                       
+        border: 1px solid #d8d8d8;                                              
+        border-bottom: 1px solid #ccc;                                          
+        vertical-align: top;                                                    
+        outline: none;                                                          
+        width: 521px;                                                           
+        margin: 0;                  
+        height: 35px;                                                           
+        padding: 9px 7px;                                                       
+        }                                                                       
+                                                                                
+        .s_btn_wr {                                                             
+        width: 102px;                                                           
+        height: 33px;                                                           
+        /*border: 1px solid #38f;*/                                             
+        border-bottom: 1px solid #2e7ae5;                                       
+        background-color: #38f;                                                 
+}                                                                               
+.btn_wr {                                                                       
+        left: 536px;                                                            
+        top: 0;                                                                 
+        margin: 0 3px 0 -7.5;                                                   
+}                                                                               
+                                                                                
+.s-title-img .btn {                                                             
+    cursor: pointer;                                                            
+    width: 100px;                                                               
+    height: 33px;                                                               
+    padding: 0;                                                                 
+    border: 0;                  
+    background-color: #38f;                                                     
+    font-size: 16px;                                                            
+    color: white;                                                               
+}                                                                               
+                                                                                
+.btn {                                                                          
+    color: white;                                                               
+    background-color: #3af;                                                     
+    width: 100px;                                                               
+    height: 35px;                                                               
+    font-size: 16px;                                                            
+    border: 0;                                                                  
+    cursor: pointer;                                                            
+}                                                                               
+                                                                                
+#kw1:focus{                                                                     
+    border-top:1px solid #38f !important;                                       
+    border-left:1px solid #38f !important;                                      
+    border-bottom:1px solid #38f !important;                                    
+}                                                                               
+                                                                                
+#kw1:hover{                                                                     
+    border-top:1px solid #999 !important; 
+    border-left:1px solid #999 !important;                                      
+    border-bottom:1px solid #b3b3b3 !important;                                 
+}                                                                               
+                           

@@ -1,0 +1,100 @@
+
+server
+ {
+   listen       80;
+   server_name  $host;
+   index index.html index.htm index.php;
+   root  /home/web/;
+   include location.conf;
+ }
+
+#server
+# {
+#   listen       80;
+#   server_name  $host;
+#   index index.html index.htm index.php;
+#   if ($host ~ (.*)\.(.*)?$){
+#        set $domain $1.$2;
+#   }
+#   if ($host ~ (.*)\.(.*)\.(.*)?$){
+#        set $domain $2.$3;
+#   }
+
+#   location /echo { echo $domain;}
+#   location /uri { echo $document_root;}
+
+#   error_page 404 /404.html;
+
+#   root  /home/web/18.cn/static/$domain;
+#   include location.conf;
+
+# }
+
+ server
+ {
+   listen       80;
+   server_name  www.18.cn 18.cn *.18.cn;
+   index index.html index.htm index.php;
+
+   location /uri { echo $document_root;}
+
+   error_page 404 /404.html;
+
+   root  /home/web/18.cn/www;
+   include location.conf;
+ }
+
+ server
+ {
+   listen       80;
+   server_name  img.18.cn;
+   index index.html index.htm index.php;
+   root  /home/web/18.cn/upload;
+   include location.conf;
+ }
+ server
+ {
+   listen       80;
+   server_name  _;
+   index index.html index.htm index.php;
+   root  /home/web;
+
+   include location.conf;
+
+ }
+
+server
+ {
+   listen       80;
+   server_name  www.baiduzhekoukaihu.com baiduzhekoukaihu.com  *.baiduzhekoukaihu.com;
+   index index.html index.htm index.php;
+   root  /home/web/baiduzhekoukaihu.com;
+
+   #limit_conn   crawler  20;
+   include location.conf;
+   include rewrite.conf;
+ }
+
+server
+ {
+   listen       80;
+   server_name  www.baidujv.com  baidujv.com *.baidujv.com;
+   index index.html index.htm index.php;
+   root  /home/web/baidujv.com;
+
+   #limit_conn   crawler  20;
+   include location.conf;
+   include rewrite.conf;
+ }
+
+server
+ {
+   listen       80;
+   server_name  www.jmzhanhui.com jmzhanhui.com *.jmzhanhui.com;
+   index index.html index.htm index.php;
+   root  /home/web/jmzhanhui.com;
+
+   #limit_conn   crawler  20;
+   include location.conf;
+ }
+

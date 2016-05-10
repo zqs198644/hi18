@@ -1,0 +1,20 @@
+<?php
+extract($_GET);
+
+$url_ip138 = "http://www.ip138.com/ips138.asp?ip=".$ip."&action=2";
+$pattern_ip138 = '/<li>(.*)<\/li><li>(.*)<\/li><\/ul><\/td>/';
+
+$url_ipcn = 'http://www.ip.cn/index.php?ip='.$ip;
+$pattern_ipcn = '/<\/code>&nbsp;(.*)<\/p><p>GeoIP/';
+
+function getIP($pattern,$url)
+{
+	$content = file_get_contents($url);
+	preg_match($pattern, $content, $match);   
+	echo $match[1]."<br>";
+	echo  $match[2]."<br>";
+print_r(iconv_get_encoding()); 
+        //var_dump($match);
+}
+getIP($pattern_ipcn,$url_ipcn);
+?>

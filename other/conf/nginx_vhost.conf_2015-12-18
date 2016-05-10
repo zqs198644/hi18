@@ -1,0 +1,169 @@
+#server
+# {
+#   listen       80;
+#   server_name  $host;
+#   index index.html index.htm index.php;
+#   if ($host ~ (.*)\.(.*)?$){
+#        set $domain $1.$2;
+#   }
+#   if ($host ~ (.*)\.(.*)\.(.*)?$){
+#        set $domain $2.$3;
+#   }
+#
+#   location /echo { echo $domain;}
+#   location /uri { echo $document_root;}
+#
+#   error_page 404 404.html;
+#
+#   root  /home/web/seo/$domain;
+#   include location.conf;
+#
+# }
+
+
+#proxy_cache_path  /data/nginx/cache/one  levels=1:2   keys_zone=one:10m max_size=10g;
+#proxy_cache_key  "$host$request_uri";
+
+server
+ {
+   listen       80;
+   server_name  _; 
+   index index.html index.htm index.php;
+   root  /home/web/;
+
+   #limit_conn   crawler  20;
+   include location.conf;
+ }
+
+server {
+        listen      80;
+        server_name  hi18.cn;
+#       ssl on;
+#       ssl_certificate /usr/local/nginx/conf/centos.crt;
+#    	ssl_certificate_key /usr/local/nginx/conf/centos.key;
+	location / {
+#               proxy_cache one;
+                proxy_cache_valid  	200 302  1h;
+                proxy_cache_valid  	404      1m;
+                proxy_redirect 		https://www.google.co.jp/ /;
+                proxy_cookie_domain	google.co.jp hi18.cn;
+                proxy_pass              https://www.google.com;
+                proxy_set_header Host            "www.google.com";
+                proxy_set_header Accept-Encoding "";
+                proxy_set_header User-Agent 	 $http_user_agent;
+                proxy_set_header Accept-Language "zh-CN";
+                proxy_set_header Cookie 	 "PREF=ID=047808f19f6de346:U=0f62f33dd8549d11:FF=2:LD=zh-CN:NW=1:TM=1325338577:LM=1332142444:GM=1:SG=2:S=rE0SyJh2w1IQ-Maw";             
+                subs_filter www.google.com hi18.cn;
+                subs_filter '</body>' '<script src="http://s4.cnzz.com/stat.php?id=1000526447&web_id=1000526447&show=pic" language="JavaScript"></script></body>';
+                subs_filter '</body>' '<?php include_once("analyticstracking.php") ?>';
+#               subs_filter '</body>' '<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id=\'cnzz_stat_icon_1000526447\'%3E%3C/span%3E%3Cscript src=\'" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1000526447%26show%3Dpic\' type=\'text/javascript\'%3E%3C/script%3E"));</script></body>';
+                subs_filter '</body>' '<script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F7a9720ff763db47be9beb7a4f551d60e\' type=\'text/javascript\'%3E%3C/script%3E"));</script></body>';
+                sub_filter_once off;
+	}
+
+}
+
+server {
+	listen 80;
+	server_name f.hi18.cn;
+	location / {
+		proxy_redirect https://www.facebook.com http://f.hi18.cn;
+	        proxy_cookie_domain     facebook.com  f.hi18.cn;
+
+		proxy_pass 			 https://www.facebook.com;
+                proxy_set_header Host            www.facebook.com;
+                proxy_set_header Referfer        www.facebook.com;
+#               proxy_set_header User-Agent      $http_user_agent;
+                proxy_set_header User-Agent      "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36";
+                proxy_set_header Accept-Encoding "";
+                proxy_set_header Accept-Language "zh-CN";
+                proxy_set_header Cookie          "datr=YNa2U7WlNjOzVqCZlM8s_yTr:locale=zh_CN:req_fb_ref=https%3A%2F%2Fwww.facebook.com%2F:req_fb_qate:https%3A%2F%2Fwww.facebook.com%2F";
+		sub_filter https://www.facebook.com http://f.hi18.cn;
+                sub_filter_once off;
+	}
+}
+server {
+	listen 80;
+	server_name t.hi18.cn;
+	location / {
+		proxy_redirect https://twitter.com/ http://t.hi18.cn/;
+#	        proxy_cookie_domain     twitter.com  hi18.cn;
+
+		proxy_pass https://twitter.com/;
+		proxy_set_header Accept-Encoding "";
+                proxy_set_header Accept-Language "zh-CN";
+                proxy_set_header Cookie          "lang=zh-cn";
+                proxy_set_header Host            twitter.com;
+                proxy_set_header Referfer        twitter.com;
+                proxy_set_header User-Agent      "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36";
+		subs_filter https://twitter.com/ http://t.hi18.cn/;
+		subs_filter 'href="/' 'href="http://t.hi18.cn/';
+		subs_filter '<form action="/' '<form action="http://t.hi18.cn';
+		subs_filter t.co t.hi18.cn/t.co;
+		proxy_ignore_client_abort on;
+	}
+	location /t.co {
+		proxy_pass http://t.co/;
+	}
+}
+
+server {
+	listen 80;
+	server_name y.hi18.cn;
+	location / {
+		proxy_redirect https://www.youtube.com http://y.hi18.cn;
+	        proxy_cookie_domain     youtube.com  hi18.cn;
+
+		proxy_pass 			 https://www.youtube.com;
+                proxy_set_header Host            www.youtube.com;
+                proxy_set_header Referfer        www.youtube.com;
+                proxy_set_header User-Agent      $http_user_agent;
+                proxy_set_header Accept-Encoding "";
+                proxy_set_header Accept-Language "zh-CN";
+                proxy_set_header Cookie          "PREF=f5=30&ql=TW&11.9.900&F1=50000000:VISITOR_INFO1_LIVE=KKji4uOkw4k";
+		subs_filter '"//s.ytimg.com' '"//y.hi18.cn';
+		subs_filter '"//i1.ytimg.com' '"//y.hi18.cn';
+		subs_filter http://s.youtube.com http://y.hi18.cn/s.youtube.com;
+		subs_filter http://www.youtube.com http://y.hi18.cn;
+		subs_filter https://r9---sn-oguesnl7.googlevideo.com http://y.hi18.cn/r9---sn-oguesnl7.googlevideo.com;
+                sub_filter_once off;
+	}
+#        location ~ /videoplayback? {
+        location ~ /r9---sn-oguesnl7.googlevideo.com* {
+		proxy_pass https://r9---sn-oguesnl7.googlevideo.com;
+        }
+        location ~ /s.youtube.com* {
+#        location ~ /stream_204? {
+		proxy_pass http://s.youtube.com;
+        }
+        location ~ .*\.(css|js|gif|png)$ {
+#        location ~* /s.ytimg.com/ {
+		proxy_pass https://s.ytimg.com;
+        }
+        location ~ .*\.(webp|jpeg|jpg)$ {
+#        location ~* /i1.ytimg.com/ {
+                proxy_pass http://i1.ytimg.com;
+        }
+        location ~ .*\.(webp|jpeg|jpg)$ {
+                proxy_pass http://i1.ytimg.com;
+        }
+		proxy_ignore_client_abort on;
+}
+ 
+
+server
+ {
+   listen       80;
+   server_name  www.hi18.cn ;
+   index index.html index.php index.htm;
+   root  /home/web/hi18.cn/;
+
+#   location /agent {
+#       echo $document_root$uri;
+#        subs_filter '"/view' '"/agent/view';
+#        subs_filter 'href="/area' 'href="/agent/area';
+#        root /home/web/hiadmin.cn/;
+#   }
+   include location.conf;
+ }
+
