@@ -1,0 +1,36 @@
+<!doctype>
+<html>
+<head>
+<style>
+#framePaper {
+display:none;
+}
+</style>
+</head>
+<body>
+<a data-href="http://www.baidu.com" href="###" id="fuck">fuck</a>
+
+<div id="framePaper">
+<iframe id="framePaperFrame" src="about:blank" frameBorder=0></iframe>
+</div>
+
+<script>
+(function(){
+var links = document.getElementsByTagName('a'),
+    framePaper = document.getElementById('framePaper'),
+    //framePaperFrame = window.frames['framePaperFrame'];
+    framePaperFrame = document.getElementById('framePaperFrame');
+
+    for(var i = 0; i < links.length; i++){
+	links[i].onclick = function(e){
+	    framePaper.style.display = 'block';
+	    framePaperFrame.src = this.getAttribute('data-href');
+	    return false;
+	}
+    }
+})();
+</script>
+
+</body>
+</html>
+
